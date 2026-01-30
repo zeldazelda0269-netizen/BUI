@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Silk | Agency for Greater Brand Growth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary-bg: #000000;
+            --secondary-bg: #0a0a0a;
+            --hero-bg: #1a033d; /* Reference image ka purple tone */
+            --card-bg: #111111;
+            --accent-main: #00f0ff; 
+            --accent-alt: #ff00ff; 
+            --gradient: linear-gradient(90deg, #00f0ff 0%, #ff00ff 100%);
+            --text-main: #ffffff;
+            --text-muted: #999999;
+            --border: rgba(255, 255, 255, 0.12);
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UI Components --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .btn {
+            padding: 18px 36px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gradient {
+            background: var(--gradient);
+            color: #000;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-main);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-main);
+            color: var(--accent-main);
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 30px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 1;
+            color: var(--accent-main);
+        }
+
+        /* --- New Hero (Image Jaisa) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1a033d 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        /* Slanted Mosaic Background Effect */
+        .hero-bg-mosaic {
+            position: absolute;
+            top: 0;
+            right: -10%;
+            width: 60%;
+            height: 120%;
+            transform: rotate(-10deg) translateY(-10%);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            opacity: 0.4;
+            pointer-events: none;
+            mask-image: linear-gradient(to right, transparent, black 40%);
+        }
+
+        .mosaic-item {
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .mosaic-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-label {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            max-width: 550px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .hero-trust-badges {
+            display: flex;
+            gap: 50px;
+            margin-top: 60px;
+            align-items: center;
+        }
+
+        .badge-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .badge-stars { color: #ffb400; font-size: 0.8rem; }
+        .badge-text { font-size: 0.85rem; font-weight: 600; }
+        .badge-brand { font-size: 1.5rem; font-weight: 800; font-family: serif; letter-spacing: -1px; }
+
+        /* Logos Ribbon */
+        .client-logos {
+            background: #000;
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .client-logos i, .client-logos span {
+            font-size: 1.2rem;
+            opacity: 0.5;
+            filter: grayscale(1);
+            font-weight: 800;
+        }
+
+        /* --- Grid & Cards --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #0f0f0f;
+            border: 1px solid var(--border);
+            padding: 0;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: grayscale(40%);
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .card-body {
+            padding: 40px;
+            flex-grow: 1;
+            background: linear-gradient(180deg, rgba(15,15,15,0.8) 0%, rgba(10,10,10,1) 100%);
+        }
+
+        .card:hover {
+            background: #151515;
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* --- Sections --- */
+        section { padding: 120px 0; }
+        .section-label {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .section-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 70px; letter-spacing: -2px; }
+
+        /* --- Footer --- */
+        footer {
+            background: #000;
+            padding: 100px 0 50px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 60px;
+        }
+        .footer-bottom {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-bg-mosaic { display: none; }
+            .section-title { font-size: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .header-actions { display: none; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .footer-top { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo" onclick="navigateTo('home')"><i class="fas fa-layer-group"></i> DIGITAL SILK</a>
+                <ul class="nav-links">
+                    <li><a href="#" id="link-home" onclick="navigateTo('home')">Home</a></li>
+                    <li><a href="#" id="link-services" onclick="navigateTo('services')">Services</a></li>
+                    <li><a href="#" id="link-courses" onclick="navigateTo('courses')">Courses</a></li>
+                    <li><a href="#" id="link-business" onclick="navigateTo('business')">Our Businesses</a></li>
+                    <li><a href="#" id="link-about" onclick="navigateTo('about')">About</a></li>
+                </ul>
+                <div class="header-actions">
+                    <a href="#" class="btn btn-gradient" style="padding: 12px 25px; font-size: 0.7rem;">Request a Quote</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app-content">
+        <!-- Route Content -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 30px;">DIGITAL SILK</div>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">The agency for greater brand growth. Superior design meets performance marketing.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 25px; font-size: 0.8rem; letter-spacing: 2px;">SERVICES</h4>
+                    <ul style="list-style: none; opacity: 0.7;">
+                        <li>Web Design</li>
+                        <li>Branding</li>
+                        <li>Digital Marketing</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 25px; font-size: 0.8rem; letter-spacing: 2px;">COMPANY</h4>
+                    <ul style="list-style: none; opacity: 0.7;">
+                        <li>About</li>
+                        <li>Careers</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 25px; font-size: 0.8rem; letter-spacing: 2px;">CONTACT</h4>
+                    <p>info@digitalsilk.com</p>
+                    <p>800.856.5417</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DIGITAL SILK. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const pages = {
+            home: `
+                <div class="hero">
+                    <!-- Mosaic Background Reference Image Jaisa -->
+                    <div class="hero-bg-mosaic">
+                        <div class="mosaic-item"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400"></div>
+                        <div class="mosaic-item"><img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=400"></div>
+                        <div class="mosaic-item"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400"></div>
+                        <div class="mosaic-item"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=400"></div>
+                    </div>
+
+                    <div class="container">
+                        <div class="hero-content">
+                            <span class="hero-label">Premium Web Design Agency</span>
+                            <h1>We Grow<br>Brands<br>Online</h1>
+                            <p>Custom Websites, Branding & Digital Marketing</p>
+                            
+                            <a href="#" class="btn btn-gradient" onclick="navigateTo('services')">Request a Quote <i class="fas fa-chevron-right" style="margin-left: 10px; font-size: 0.7rem;"></i></a>
+
+                            <div class="hero-trust-badges">
+                                <div class="badge-item">
+                                    <div class="badge-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                    <span class="badge-text">5 Star DesignRush Reviews</span>
+                                </div>
+                                <div class="badge-item" style="border-left: 1px solid rgba(255,255,255,0.2); padding-left: 30px;">
+                                    <span class="badge-text" style="font-size: 0.7rem; opacity: 0.7;">Best Digital Agency of 2024</span>
+                                    <span class="badge-brand">Forbes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="client-logos">
+                    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <i class="fab fa-nfl"></i>
+                        <span style="font-size: 1.5rem;">hp</span>
+                        <i class="fas fa-university"></i>
+                        <span style="letter-spacing: 2px;">XEROX</span>
+                        <i class="fab fa-sony"></i>
+                        <span style="font-weight: 900;">P&G</span>
+                        <i class="fab fa-nfl"></i>
+                        <span style="font-size: 1.5rem;">hp</span>
+                        <i class="fas fa-university"></i>
+                        <span style="letter-spacing: 2px;">XEROX</span>
+                        <i class="fab fa-sony"></i>
+                        <span style="font-weight: 900;">P&G</span>
+                    </div>
+                </div>
+
+                <section style="background: #050505;">
+                    <div class="container">
+                        <span class="section-label">Capabilities</span>
+                        <h2 class="section-title">Design that engages.<br>Marketing that converts.</h2>
+                        <div class="grid">
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800" alt="Web Dev"></div>
+                                <div class="card-body">
+                                    <i class="fas fa-code"></i>
+                                    <h3>Web Development</h3>
+                                    <p>Robust, scalable, and high-speed web solutions for enterprise needs.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" alt="Branding"></div>
+                                <div class="card-body">
+                                    <i class="fas fa-palette"></i>
+                                    <h3>Branding & Design</h3>
+                                    <p>Award-winning creative that defines your brand's visual identity.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Marketing"></div>
+                                <div class="card-body">
+                                    <i class="fas fa-rocket"></i>
+                                    <h3>Digital Marketing</h3>
+                                    <p>Marketing funnels designed to increase traffic and leads globally.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            services: `
+                <section style="padding-top: 180px;">
+                    <div class="container">
+                        <span class="section-label">Full-Service Agency</span>
+                        <h1 class="section-title">Our Capabilities.</h1>
+                        <div class="grid">
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>B2B E-commerce</h3><p>Specialized solutions for complex B2B buying journeys.</p></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>Custom SaaS</h3><p>Product strategy and engineering for software platforms.</p></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>Enterprise SEO</h3><p>Search strategies that capture high-intent traffic.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            courses: `
+                <section style="padding-top: 180px; background: #080808;">
+                    <div class="container">
+                        <span class="section-label">Silk Academy</span>
+                        <h1 class="section-title">Digital Mastery.</h1>
+                        <div class="grid">
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>Performance Growth</h3><p>Frameworks used by top digital strategists.</p></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>High-End UI/UX</h3><p>Learn psychological design principles.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            business: `
+                <section style="padding-top: 180px;">
+                    <div class="container">
+                        <span class="section-label">Our Ecosystem</span>
+                        <h1 class="section-title">Diverse Ventures.</h1>
+                        <div class="grid">
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>Silk Ventures</h3><p>Investment arm for scaling tech startups.</p></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-image"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"></div>
+                                <div class="card-body"><h3>Silk Labs</h3><p>R&D focused on proprietary marketing tools.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            about: `
+                <section style="padding-top: 180px;">
+                    <div class="container">
+                        <span class="section-label">Who We Are</span>
+                        <h1 class="section-title">Global Agency.</h1>
+                        <p style="font-size: 1.5rem; max-width: 800px;">Digital Silk partners with brands to drive growth through superior digital experiences and results-driven transparency.</p>
+                    </div>
+                </section>
+            `
+        };
+
+        function navigateTo(pageKey) {
+            const content = document.getElementById('app-content');
+            content.innerHTML = pages[pageKey] || pages.home;
+            
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById('link-' + (pageKey === 'business' ? 'business' : pageKey));
+            if (activeLink) activeLink.classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        window.onload = () => navigateTo('home');
+    </script>
+</body>
+</html>
