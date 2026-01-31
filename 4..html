@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Silk | Agency for Greater Brand Growth</title>
+    <title>NDS | Agency for Greater Brand Growth</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -139,6 +139,19 @@
         .nav-links a:hover, .nav-links a.active {
             opacity: 1;
             color: var(--accent-main);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-main);
         }
 
         /* --- New Hero (Image Jaisa) --- */
@@ -344,7 +357,32 @@
             .section-title { font-size: 2.5rem; }
         }
         @media (max-width: 768px) {
-            .nav-links, .header-actions { display: none; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 40px 0;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .header-actions .btn {
+                padding: 15px 30px;
+            }
+            .menu-toggle {
+                display: block;
+            }
             .hero-content h1 { font-size: 3.5rem; }
             .footer-top { grid-template-columns: 1fr; }
         }
@@ -355,17 +393,20 @@
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo" onclick="navigateTo('home')"><i class="fas fa-layer-group"></i> DIGITAL SILK</a>
-                <ul class="nav-links">
-                    <li><a href="#" id="link-home" onclick="navigateTo('home')">Home</a></li>
-                    <li><a href="#" id="link-services" onclick="navigateTo('services')">Services</a></li>
-                    <li><a href="#" id="link-courses" onclick="navigateTo('courses')">Courses</a></li>
-                    <li><a href="#" id="link-business" onclick="navigateTo('business')">Our Businesses</a></li>
-                    <li><a href="#" id="link-about" onclick="navigateTo('about')">About</a></li>
-                </ul>
-                <div class="header-actions">
-                    <a href="#" class="btn btn-gradient" style="padding: 12px 25px; font-size: 0.7rem;">Request a Quote</a>
+                <a href="#" class="logo" onclick="navigateTo('home')"><i class="fas fa-layer-group"></i> NDS Agency</a>
+                <div class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="#" id="link-home" onclick="navigateTo('home')">Home</a></li>
+                        <li><a href="#" id="link-services" onclick="navigateTo('services')">Services</a></li>
+                        <li><a href="#" id="link-courses" onclick="navigateTo('courses')">Courses</a></li>
+                        <li><a href="#" id="link-business" onclick="navigateTo('business')">Our Businesses</a></li>
+                        <li><a href="#" id="link-about" onclick="navigateTo('about')">About</a></li>
+                    </ul>
+                    <div class="header-actions">
+                        <a href="#" class="btn btn-gradient" style="padding: 12px 25px; font-size: 0.7rem;">Request a Quote</a>
+                    </div>
                 </div>
+                <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             </nav>
         </div>
     </header>
@@ -378,7 +419,7 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-col">
-                    <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 30px;">DIGITAL SILK</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 30px;">NDS Agency</div>
                     <p style="color: var(--text-muted); margin-bottom: 30px;">The agency for greater brand growth. Superior design meets performance marketing.</p>
                 </div>
                 <div class="footer-col">
@@ -399,12 +440,12 @@
                 </div>
                 <div class="footer-col">
                     <h4 style="margin-bottom: 25px; font-size: 0.8rem; letter-spacing: 2px;">CONTACT</h4>
-                    <p>info@digitalsilk.com</p>
+                    <p>info@ndsagency.com</p>
                     <p>800.856.5417</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 DIGITAL SILK. ALL RIGHTS RESERVED.</p>
+                <p>&copy; 2026 NDS Agency. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </footer>
@@ -518,7 +559,7 @@
             courses: `
                 <section style="padding-top: 180px; background: #080808;">
                     <div class="container">
-                        <span class="section-label">Silk Academy</span>
+                        <span class="section-label">NDS Academy</span>
                         <h1 class="section-title">Digital Mastery.</h1>
                         <div class="grid">
                             <div class="card">
@@ -541,11 +582,11 @@
                         <div class="grid">
                             <div class="card">
                                 <div class="card-image"><img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800"></div>
-                                <div class="card-body"><h3>Silk Ventures</h3><p>Investment arm for scaling tech startups.</p></div>
+                                <div class="card-body"><h3>NDS Agency Ventures</h3><p>Investment arm for scaling tech startups.</p></div>
                             </div>
                             <div class="card">
                                 <div class="card-image"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"></div>
-                                <div class="card-body"><h3>Silk Labs</h3><p>R&D focused on proprietary marketing tools.</p></div>
+                                <div class="card-body"><h3>NDS Labs</h3><p>R&D focused on proprietary marketing tools.</p></div>
                             </div>
                         </div>
                     </div>
@@ -556,7 +597,7 @@
                     <div class="container">
                         <span class="section-label">Who We Are</span>
                         <h1 class="section-title">Global Agency.</h1>
-                        <p style="font-size: 1.5rem; max-width: 800px;">Digital Silk partners with brands to drive growth through superior digital experiences and results-driven transparency.</p>
+                        <p style="font-size: 1.5rem; max-width: 800px;">NDS Agency partners with brands to drive growth through superior digital experiences and results-driven transparency.</p>
                     </div>
                 </section>
             `
@@ -570,7 +611,28 @@
             const activeLink = document.getElementById('link-' + (pageKey === 'business' ? 'business' : pageKey));
             if (activeLink) activeLink.classList.add('active');
             
+            const menu = document.querySelector('.nav-menu');
+            if (menu) menu.classList.remove('active');
+            const icon = document.querySelector('.menu-toggle i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+            
             window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector('.nav-menu');
+            const icon = document.querySelector('.menu-toggle i');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         }
 
         window.addEventListener('scroll', () => {
